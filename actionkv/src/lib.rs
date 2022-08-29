@@ -1,3 +1,5 @@
+// a stub of libactionkv, for now
+
 #[cfg(test)]
 mod tests {
     #[test]

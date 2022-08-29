@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 byteorder = "1.4.3"
 crc = "3.0.0"
+structopt = "0.3.26"
 
 [lib]
 name = "libactionkv"
