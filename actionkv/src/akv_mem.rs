@@ -45,7 +45,20 @@ fn main() {
     let mut store = ActionKV::open(&path).expect("unable to open file");
     store.load().expect("unable to load data");
 
-    match &opt.action {
+    match opt.action.as_str() {
+        "get" => match store.get(&opt.key).unwrap() {
+            None => eprintln!("{:?} not found", &opt.key),
+            Some(value) => println!("{:?}", value),
+        },
+        "delete" => store.delete(&opt.key).unwrap(),
+        "insert" => {
+            let value = opt.value.expect(&USAGE).as_ref();
+            store.insert(opt.key, value).unwrap()
+        }
+        "update" => {
+            let value = opt.value.expect(&USAGE).as_ref();
+            store.update(opt.key, value).unwrap()
+        }
         _ => panic!("omgomgomgomg"),
     }
 }
